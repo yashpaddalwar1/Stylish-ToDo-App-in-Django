@@ -118,11 +118,12 @@
             }
         }
     </style>
-    <title>Test</title>
+    <title>ToDo App</title>
 </head>
 <body class="home-container">
     <div class="form-main">
         <h1 style="color:rgb(255, 244, 143);">ToDo App</h1>
+        <h6 style="color: white;padding:0%;margin-top: 0%;margin-bottom: 0%;">By Yash Ajit Paddalwar</h6>
         <hr style="color: blanchedalmond">
         <form method="POST" action="{% url 'home' %}">
         {% csrf_token %}
@@ -142,5 +143,6 @@
         <a class="new" href="{% url 'delete' i.id %}">Completed?</a>
     </div>
     {% endfor %}
+    
 </body>
 </html>
