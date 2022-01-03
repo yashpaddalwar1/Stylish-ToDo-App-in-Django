@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .home-container{
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            background-color: black;
+        }
+        .form-main{
+            justify-content: center;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            color: blanchedalmond;
+            font-weight: bold;
+            font-size: 20px;
+            font-family: 'Lobster Two', cursive;
+            border-color: rgb(217, 255, 0);
+            border-width: 5px;
+            padding-bottom: 1rem;
+            border-style: solid;
+            margin-right: 1rem;
+            margin-bottom: 1rem;
+        }
+        .second{
+            padding-top: 2rem;
+        }
+        .services__card {
+            font-family: 'Lobster Two', cursive;
+            margin: 10px;
+            height: 425px;
+            padding: 20px;
+            width: 300px;
+            border-radius: 10px;
+            color: #000000;
+            background-image: linear-gradient(to right, #cc9fff 0%, #8c00ff 100%);
+            transition: 0.3s ease-in;
+            transform-style: preserve-3d;
+        }
+        .services__card:hover {
+            transform: scale(1.075);
+            transition: 0.3s ease-in;
+            cursor: pointer;
+            transform: rotateY(22deg);
+        }
+        .btn{
+            font-size: 20px;
+            font-weight: bold;
+            background: #d18bff;
+            background: -webkit-linear-gradient(to right, #fcb045, #fd1d1d, #833ab4);
+            background: linear-gradient(to right, #45c8fc, #a557ff, #c300ff);
+            padding: 10px 60px;
+            border: none;
+            font-family: 'Lobster Two', cursive;
+            border-radius: 2px;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.35s;
+            outline: none;
+            margin-left: 4rem;
+            justify-content: center;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            position: relative;
+            z-index: 2;
+            color: #ffffff;
+            text-decoration: none;
+        }
+        .btn:hover {
+            transform: scale(1.075);
+            transition: 0.3s ease-in;
+            cursor: pointer;
+        }
+        .btn:after {
+            position: absolute;
+            content: '';
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: #ff1ead;
+            transition: all 0.35s;
+            border-radius: 4px;
+        }
+        .new{
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 17px;
+            color: rgb(255, 230, 0);
+        }
+        .new:hover{
+            transform: scale(1.075);
+            transition: 0.3s ease-in;
+            cursor: pointer;
+            color: black;
+        }
+
+        @media screen and (max-width: 1100px) {
+            .home-container{
+                display: grid;
+                grid-template-columns: 1fr;
+            }
+            .services__card {
+                display: grid;
+                grid-template-columns: 1fr;
+                align-items: center;
+                justify-content: center;
+                margin-bottom: 10px;
+                margin-top: 20px;
+                margin-right: 20px;
+                padding-right: 20px;
+            }
+        }
+    </style>
+    <title>Test</title>
+</head>
+<body class="home-container">
+    <div class="form-main">
+        <h1 style="color:rgb(255, 244, 143);">ToDo App</h1>
+        <hr style="color: blanchedalmond">
+        <form method="POST" action="{% url 'home' %}">
+        {% csrf_token %}
+        <p>{{form.as_p}}</p>
+        <input class="btn" type="submit" value="Create">
+        </form>
+    </div>
+    {% for i in todolist %}
+    <div class="second services__card">
+        <h3>ToDo Task</h3>
+        <hr style="color: blanchedalmond">
+        
+        <p><b>Task:</b> {{i}}</p>
+        <p><b>Deadline:</b> {{i.deadline}}</p>
+        <br>
+        <br>
+        <a class="new" href="{% url 'delete' i.id %}">Completed?</a>
+    </div>
+    {% endfor %}
+</body>
+</html>
